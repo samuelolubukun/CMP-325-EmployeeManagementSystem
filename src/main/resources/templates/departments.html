@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="index :: head"></div>
+<title>Departments</title>
+
+<body>
+
+<div th:include="index :: navbar"></div>
+
+<h1 class="text-center">Department List</h1>
+
+<div class="container text-center ">
+	<p th:text="${msg}"></p>
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Department</th>
+			<th>Update</th>
+			<th>Delete</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="d : ${departmentlist}">
+			<td th:text="${d.dept_id}"></td>
+			<td th:text="${d.name}"></td>
+			<td><a th:href="@{/edit-dept/{id}(id = ${d.dept_id})}"><button class="btn btn-primary">Edit</button></a></td>
+			<td>
+				<a th:href="@{/delete-dept/{id}(id = ${d.dept_id})}" onclick="return confirmDelete();">
+					<button class="btn btn-danger">Delete</button>
+				</a>
+			</td>
+
+		</tr>
+		</tbody>
+	</table>
+
+	<script>
+		function confirmDelete() {
+			return confirm("Are you sure you want to delete this department? To delete ensure to clear all associated employee data!");
+		}
+	</script>
+
+	<div style="text-align: right;">
+		<!-- Add btn-primary class for navy blue color -->
+		<button type="button" class="btn btn-primary btn-lg btn-block">
+			<a style="text-decoration: none; color: white;" href="/add-form">Add Department</a>
+		</button>
+	</div>
+
+</div>
+</body>
+
+</html>

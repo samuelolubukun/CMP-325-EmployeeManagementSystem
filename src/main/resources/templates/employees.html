@@ -1,0 +1,40 @@
+<!doctype html >
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:include="index :: head"></div>
+<title>Employees</title>
+<body>
+
+
+	<div th:include="index :: navbar"></div>
+	
+	<h1 class="text-center">Employee List</h1>
+
+	<div class="container text-center ">
+		<p th:text="${msg}"></p>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Salary</th>
+					<th>Department name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="d : ${elist}">
+					<td th:text="${d.empId}"></td>
+					<td th:text="${d.name}"></td>
+					<td th:text="${d.email}"></td>
+					<td th:text="${d.salary}"></td>
+					<td th:text="${d.department.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+</html>
